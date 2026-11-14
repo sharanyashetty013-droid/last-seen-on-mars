@@ -1,10 +1,13 @@
+[README (4).md](https://github.com/user-attachments/files/34853932/README.4.md)
 # Last Seen on Mars
 
 **Eight machines we left on other worlds. Most went silent long ago. Two still answer.**
 
 An interactive 3D story about the hardware NASA left behind on the Moon, on Mars and in interstellar space, and the science each machine made possible. Built for the **NASA Space Apps Challenge 2026**, challenge *"Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars"*.
 
-**Live site:** 
+**Live site:** https://last-seen-on-mars.vercel.app  <!-- replace with your Vercel link -->
+
+![Opening shot: a half-lit Mars beside the title "Last seen on Mars"](docs/hero.jpg)
 
 ---
 
@@ -18,6 +21,8 @@ The facts exist, but they're spread across NASA pages written for adults. **Last
 
 ### Travel through a real 3D solar neighbourhood
 Scrolling moves a camera from Mars to the Moon, out to Voyager 1 and back, one chapter per machine, in the order they arrived (1967 to 2021). The planets use real surface maps, and **every machine is pinned at its real landing site** (latitude and longitude). As each chapter opens, the planet turns so that site rotates into daylight.
+
+![Voyager 1 chapter with the 3D spacecraft](docs/voyager.jpg)
 
 ### Talk to the machines
 Each machine answers questions in the first person, using **only facts from its NASA fact sheet**. Tap a suggested question or type your own. If it doesn't know, it says so.
@@ -33,6 +38,8 @@ Each machine answers questions in the first person, using **only facts from its 
 
 ### Why they went quiet: dust storm simulator
 Drag the dust in the Martian sky from a clear day to 10 June 2018, and watch the real 3D Mars go dark while Opportunity's solar power falls from about **645 to 22 watt-hours**, below what it needed to survive. "Play the June 2018 storm" replays it automatically.
+
+![The dust storm at its peak: 22 watt-hours](docs/dust-storm.jpg)
 
 ### Planned vs. actually lived
 How long NASA planned each mission to last, and how long the machine really worked:
@@ -50,6 +57,8 @@ How long NASA planned each mission to last, and how long the machine really work
 - **Local Mars time** at each Mars landing site, right now (the Mars Sol Date method used by NASA's Mars24).
 - **Voyager 1's live distance** from Earth, ticking upward. It crosses one light-day on 18 November 2026.
 - **Signal lab:** send a message to the Moon, Mars or Voyager 1. Today's Earth–Mars distance is computed from JPL's planetary orbital elements, so the light-travel time and the time a reply would come back are real.
+
+![Signal lab sending a message to Mars](docs/signal-lab.jpg)
 
 ### Mission log
 Talk to all eight machines to unlock a certificate with your name on it.
@@ -82,7 +91,7 @@ Every image and sound credit is shown in the app next to the item and links to i
 
 ## Keeping it true
 
-1. A machine only says what is in its fact sheet in `src/machines.js`, and each fact sheet links to its NASA source.
+1. A machine only says what is in its fact sheet in [`src/machines.js`](src/machines.js), and each fact sheet links to its NASA source.
 2. Personality is imagined (feelings, jokes). Facts are not changed. The site says this on the page.
 3. Where a value is modelled rather than measured (the dust simulator between its two real readings), the page says so.
 
