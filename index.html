@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Last Seen on Mars</title>
+    <meta name="description" content="Chat with the machines NASA left behind on the Moon, on Mars and in deep space." />
+  </head>
+  <body>
+    <div class="storm" id="storm" aria-hidden="true"></div>
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <canvas id="gl" aria-label="3D view of Earth, the Moon, Mars and Voyager 1"></canvas>
+    <div id="pins" class="pins"></div>
+    <div class="edge-fade top" aria-hidden="true"></div>
+    <div class="edge-fade bottom" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <span class="progress-line" id="progress-line"></span>
+      <a class="wordmark" href="#top"><span class="dot"></span>Last Seen on Mars</a>
+      <nav class="rail" id="rail" aria-label="Chapters"></nav>
+      <div class="top-actions">
+        <button class="icon-btn" id="sound" type="button" aria-label="Sound"></button>
+        <button class="icon-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="menu" id="menu" aria-label="Menu" hidden>
+      <div class="menu-card">
+        <p class="menu-label">The machines</p>
+        <ol class="menu-list" id="menu-list"></ol>
+        <p class="menu-label">More</p>
+        <div class="menu-links">
+          <a href="#dust" data-close>Why they went quiet <span>Dust storm simulator</span></a>
+          <a href="#lifespan" data-close>Planned vs. actually lived <span>How long each one really lasted</span></a>
+          <a href="#lab" data-close>Send a signal <span>Real light-travel time, live</span></a>
+          <a href="#finale" data-close>Where is Voyager 1 now <span>Live distance from Earth</span></a>
+          <button type="button" class="mission" id="mission">Mission log <span id="mission-text"></span><span class="mission-dots" id="mission-dots"></span></button>
+        </div>
+        <p class="menu-foot">Every fact is from NASA. The machines' feelings are imagined.</p>
+      </div>
+    </nav>
+
+    <main id="story">
+      <section class="hero" id="top" data-sky="mars">
+        <h1><span class="line"><span>Last seen</span></span><span class="line"><em>on Mars</em></span></h1>
+        <p class="hero-sub">Eight machines we left on other worlds. Most went silent long ago. Two still answer. Follow their last signals.</p>
+        <p class="scroll-cue"><span></span>Scroll to begin</p>
+      </section>
+
+      <section class="numbers" id="numbers" data-sky="mars">
+        <div class="num"><b data-count="8">0</b><span>machines left behind on the Moon, on Mars and in deep space</span></div>
+        <div class="num"><b data-count="54">0</b><span>years between the first landing here and the last</span></div>
+        <div class="num"><b data-count="2">0</b><span>still working today</span></div>
+      </section>
+
+      <div id="chapters"></div>
+
+      <section class="wide" id="dust" data-sky="mars">
+        <div class="wide-card">
+                    <h2>Why they went quiet</h2>
+          <p class="lab-sub">Most of them didn't break. The sky went dark. Drag the slider and watch a Martian dust storm swallow the Sun over Opportunity.</p>
+          <p class="dust-label">Opportunity's power from the Sun, per Martian day</p>
+          <p class="dust-power"><b id="dust-wh">645</b> watt-hours</p>
+          <div class="dust-meter"><i id="dust-bar"></i><span class="dust-line"></span></div>
+          <p class="dust-state" id="dust-state">A normal day. Plenty of power for science.</p>
+          <div class="dust-control">
+            <input type="range" id="dust-range" min="0.5" max="10.8" step="0.1" value="0.5" aria-label="Amount of dust in the sky" />
+            <div class="dust-marks">
+              <span style="left:0%">Clear sky</span>
+              <span style="left:48.5%">2007 storm</span>
+              <span style="left:100%">10 June 2018</span>
+            </div>
+          </div>
+          <div class="dust-row">
+            <button type="button" class="btn-primary" id="dust-play">Play the June 2018 storm</button>
+            <p class="dust-tauline">Dust in the sky: <b id="dust-tau">0.5</b> tau, <b id="dust-sunpct">100%</b> of the sunlight</p>
+          </div>
+          <p class="dust-source">Real readings: about 645 Wh on 1 June 2018 and 22 Wh on 10 June 2018, at tau 10.8, the darkest sky ever measured on Mars. Values in between follow a simple curve through those two readings. Sources: NASA JPL, The Planetary Society.</p>
+        </div>
+      </section>
+
+      <section class="wide" id="lifespan" data-sky="dusk">
+        <div class="wide-card">
+                    <h2>Planned vs. actually lived</h2>
+          <p class="lab-sub">What NASA planned for, and what the machines actually gave.</p>
+          <div class="life" id="life"></div>
+          <p class="dust-source">Sources: NASA mission pages and JPL.</p>
+        </div>
+      </section>
+
+      <section class="lab" id="lab" data-sky="deep">
+        <div class="lab-card">
+                    <h2>Send a signal</h2>
+          <p class="lab-sub">Radio travels at the speed of light, about 300,000 km every second. Out here, that's still slow. Pick where to send it.</p>
+          <div class="lab-targets" role="radiogroup" aria-label="Destination">
+            <button type="button" role="radio" data-target="moon" aria-checked="true">The Moon</button>
+            <button type="button" role="radio" data-target="mars" aria-checked="false">Mars</button>
+            <button type="button" role="radio" data-target="voyager" aria-checked="false">Voyager 1</button>
+          </div>
+          <dl class="lab-facts">
+            <div><dt>Distance today</dt><dd id="lab-dist">–</dd></div>
+            <div><dt>One-way light time</dt><dd id="lab-time">–</dd></div>
+            <div><dt>A reply would come back at</dt><dd id="lab-back">–</dd></div>
+          </dl>
+          <div class="lab-track" aria-hidden="true">
+            <span class="lab-end earth">Earth</span>
+            <span class="lab-line"><i id="lab-pulse"></i></span>
+            <span class="lab-end far" id="lab-far">The Moon</span>
+          </div>
+          <form class="lab-form" id="lab-form">
+            <label class="sr-only" for="lab-msg">Your message</label>
+            <input id="lab-msg" maxlength="60" placeholder="Hello from Earth" autocomplete="off" />
+            <button type="submit" class="btn-primary">Transmit</button>
+          </form>
+          <p class="lab-status" id="lab-status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="finale" id="finale" data-sky="dusk">
+                <p class="finale-km"><b id="finale-km">25,896,000,000</b> km</p>
+        <p class="finale-text">That's how far Voyager 1 is from you, right now. On 18 November 2026 it becomes the first human-made object ever to be one full light-day from Earth. Its signal still gets home.</p>
+        <div class="finale-actions">
+          <a class="btn-primary" href="#top">Back to the start</a>
+        </div>
+        <footer class="credits">
+          <p>Photos and sounds: NASA, NASA/JPL-Caltech and partner institutions (public domain). Planet maps: NASA/JPL/USGS Viking (Mars), NASA Blue Marble (Earth), NASA lunar maps. The machines' feelings are imagined; every fact is real.</p>
+          <p>Made by team Git dwellers for the NASA Space Apps Challenge 2026, "Abandoned but not Forgotten".</p>
+        </footer>
+      </section>
+    </main>
+
+    <aside class="panel" id="panel" aria-label="Chat" hidden>
+      <div class="banner" id="banner">
+        <div class="banner-img" id="banner-img"></div>
+        <button class="panel-close" id="panel-close" aria-label="Close chat">×</button>
+        <div class="banner-who">
+          <span class="avatar" id="chat-avatar"></span>
+          <div>
+            <h2 id="chat-name"></h2>
+            <p id="chat-status"></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel-bar">
+        <span class="delay" id="chat-delay"></span>
+        <button class="where" id="where" type="button">Where am I?</button>
+      </div>
+      <section class="messages" id="messages" aria-live="polite"></section>
+      <footer class="composer">
+        <div class="chips" id="chips"></div>
+        <form id="form">
+          <label class="sr-only" for="input">Your message</label>
+          <input id="input" autocomplete="off" placeholder="Ask anything…" maxlength="200" />
+          <button type="submit">Send</button>
+        </form>
+        <p class="credit" id="banner-credit"></p>
+      </footer>
+    </aside>
+
+    <dialog id="photo" aria-labelledby="photo-title">
+      <button class="photo-close" id="photo-close" aria-label="Close">×</button>
+      <h2 id="photo-title"></h2>
+      <figure>
+        <img id="photo-img" alt="" />
+        <p class="photo-missing" id="photo-missing" hidden>This photo hasn't been added yet.</p>
+        <figcaption>
+          <span id="photo-caption"></span>
+          <a id="photo-link" target="_blank" rel="noopener noreferrer">See the original on NASA's site</a>
+          <small id="photo-credit"></small>
+        </figcaption>
+      </figure>
+    </dialog>
+
+    <dialog id="cert" aria-labelledby="cert-title">
+      <button class="photo-close" id="cert-close" aria-label="Close">×</button>
+      <h2 id="cert-title">Mission complete</h2>
+      <p class="cert-lede">You reached all 8 machines. Type your name to get your Mission Control certificate.</p>
+      <label class="sr-only" for="cert-name">Your name</label>
+      <input id="cert-name" maxlength="28" placeholder="Your name" autocomplete="off" />
+      <canvas id="cert-canvas" width="1200" height="800" aria-label="Your certificate"></canvas>
+      <button class="cert-download" id="cert-download" type="button">Download certificate</button>
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
