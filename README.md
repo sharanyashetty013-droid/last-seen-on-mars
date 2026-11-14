@@ -98,7 +98,11 @@ Kids know "a rover went to Mars". Few know that Opportunity was built for **90 d
 
 <br />
 
-## NASA data used
+### Hear real NASA recordings
+- Martian wind and a magnitude 3.7 marsquake, recorded by **InSight**
+- **Ingenuity**'s rotors, heard by Perseverance's microphone
+- "The Eagle has landed", Apollo 11, July 1969
+- The plasma "sound" of interstellar space, recorded by **Voyager 1**
 
 <details open>
 <summary><b>Photos, sounds, maps and facts</b></summary>
